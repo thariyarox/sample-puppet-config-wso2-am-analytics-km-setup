@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="healthcheck"
+       transports="https http"
+       startOnLoad="true">
+   <description/>
+   <target>
+      <inSequence>
+         <payloadFactory media-type="xml">
+            <format>
+               <Response xmlns="">
+                  <status>OK</status>
+                  <code>1</code>
+               </Response>
+            </format>
+            <args/>
+         </payloadFactory>
+         <header name="To" action="remove"/>
+         <property name="RESPONSE" value="true" scope="default" type="STRING"/>
+         <property name="NO_ENTITY_BODY" scope="axis2" action="remove"/>
+         <send/>
+      </inSequence>
+   </target>
+</proxy>
